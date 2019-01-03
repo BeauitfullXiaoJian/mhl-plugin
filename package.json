@@ -1,0 +1,14 @@
+{
+    "name": "mhl-plugin",
+    "version": "0.0.1",
+    "author": "cool1024",
+    "description": "卖货郎相关插件",
+    "dependencies": {},
+    "cordova": {
+        "id": "mhl-plugin",
+        "platforms": [
+            "android",
+            "ios"
+        ]
+    }
+}

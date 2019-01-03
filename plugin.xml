@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="mhl-plugin" version="0.0.1">
+    <name>MHL_PLUGIN</name>
+    <author>cool1024</author>
+    <license>Apache 2.0 License</license>
+    <engines>
+        <engine name="cordova" version=">=7.1.0"/>
+        <engine name="cordova-android" version=">=6.3.0" />
+    </engines>
+    <js-module src="plugin.js" name="MHLPlugin">
+        <clobbers target="MHLPlugin" />
+    </js-module>
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="MHLPlugin">
+                <param name="android-package" value="com.plugin.MHLPlugin" />
+            </feature>
+        </config-file>·
+        <config-file target="AndroidManifest.xml" parent="/*">
+        <!-- 使用蓝牙 -->
+        <uses-permission android:name="android.permission.BLUETOOTH" />
+        <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+        </config-file>
+        <!-- Java -->
+        <source-file src="src/MHLPlugin.java" target-dir="src/com/plugin" />
+        <!-- Library -->
+        <source-file src="src/qsprintersdk.jar" target-dir="libs" />
+    </platform>
+    <platform name="ios">
+        <!-- 相关代码 -->
+        <config-file target="config.xml" parent="/*">
+            <feature name="MHLPlugin">
+                <param name="ios-package" value="MHLPlugin" />
+            </feature>
+        </config-file>
+        <header-file src="src/MHLPlugin.h" />
+        <source-file src="src/MHLPlugin.m" />
+        <header-file src="src/PrinterSDK.h" />
+        <framework src="src/libPrinterSDK.a" custom="true"/>
+    </platform>
+</plugin>
