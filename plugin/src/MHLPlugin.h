@@ -14,5 +14,6 @@
 
 - (void)devices:(CDVInvokedUrlCommand*)command;
 - (void)connect:(CDVInvokedUrlCommand*)command;
-
+- (void)print:(CDVInvokedUrlCommand*)command;
+- (void)printImage:(CDVInvokedUrlCommand*)command;
 @end

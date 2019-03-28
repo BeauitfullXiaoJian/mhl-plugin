@@ -29,4 +29,7 @@ window.MHLPlugin.call('print', [`
 合计： 100
 公司名称：测试公司名称
 送货电话: 123456789`]);
+
+// 打印图片
+window.MHLPlugin.call('print', [`AVDFejwqilrjfvdfsaASDEr----base64串----rewqr12xczvg`]);
 ```

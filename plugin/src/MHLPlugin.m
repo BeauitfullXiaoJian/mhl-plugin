@@ -25,6 +25,7 @@
 
 - (void)devices:(CDVInvokedUrlCommand *)command{
     [self log:@"开始扫描设备"];
+    [mPrintJsonArray removeAllObjects];
     [self performSelector:@selector(scanDevice:) withObject:command afterDelay:1];
 }
 
@@ -38,6 +39,7 @@
          }
          [mBluetoothDevices addObject:printer];
          [mPrintJsonArray addObject:@{@"deviceName":printer.name == nil?@"未知设备":printer.name,@"deviceAddress":printer.UUIDString}];
+         [self log:printer.UUIDString];
          CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:mPrintJsonArray];
          [pluginResult setKeepCallbackAsBool:YES];
          [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
@@ -60,6 +62,12 @@
 -(void)print:(CDVInvokedUrlCommand *)command{
     NSString* printStr = [command.arguments objectAtIndex:0];
     [[PrinterSDK defaultPrinterSDK] printText:printStr];
+}
+
+-(void)printImage:(CDVInvokedUrlCommand *)command{
+    NSString* printStr = [command.arguments objectAtIndex:0];
+    NSData *data = [[NSData alloc]initWithBase64EncodedString:printStr options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    [[PrinterSDK defaultPrinterSDK] printImage:[UIImage imageWithData:data]];
 }
 
 - (void)handlePrinterConnectedNotification:(NSNotification*)notification

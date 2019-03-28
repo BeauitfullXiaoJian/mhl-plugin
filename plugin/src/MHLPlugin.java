@@ -86,6 +86,13 @@ public class MHLPlugin extends CordovaPlugin implements
             this.mBTService.printText(message);
             this.mBTService.printText("\n");
             this.mBTService.write(new byte[]{0x1d, 0x0c});
+        }else if (action.equals("printImage")) {
+            Log.d(TAG, "打印图片");
+            String message = args.getString(0);
+            byte[] decodedString = Base64.decode(message, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            this.mBTService.printImage(bitmap);
+            this.mBTService.write(new byte[]{0x1d, 0x0c});
         }
         return true;
     }
