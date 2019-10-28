@@ -1,4 +1,8 @@
-# MHL-PLUGIN
+# MHL-PLUGIN QSPrinter Cordova Plugin
+
+## 注意
+1. 此插件专为指定应用编写的，不可直接用于项目（如果你也是对接此打印机的话，那么可以直接使用），仅用于参考。
+2. 由于Cordova版本更新较快，此插件可能无法安装
 
 ## 安装
 
